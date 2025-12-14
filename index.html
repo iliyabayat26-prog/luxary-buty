@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Luxury Beauty | فروشگاه لوازم آرایشی</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;500;700&display=swap" rel="stylesheet">
+<a href="dashboard.html">داشبورد</a>
+
+
+<style>
+:root{
+  --pink:#e91e63;
+  --gold:#d4af37;
+  --dark:#1c1c1c;
+  --bg:#faf6f8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Vazirmatn',sans-serif;
+  background:linear-gradient(135deg,#fff,#fdeef4);
+  color:#333;
+}
+.lux-header{
+    max-width:1200px;
+    margin:30px auto;
+    padding:18px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(14px);
+    border-radius:30px;
+
+    box-shadow:
+      0 25px 60px rgba(0,0,0,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.6);
+
+    border:1px solid rgba(255,255,255,0.4);
+}
+
+/* لوگو */
+.lux-header h1{
+    font-size:26px;
+    font-weight:700;
+    background:linear-gradient(135deg,#e91e63,#ffb6c1);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* منو */
+.lux-header nav{
+    display:flex;
+    align-items:center;
+    gap:22px;
+}
+
+.lux-header nav a{
+    text-decoration:none;
+    color:#333;
+    font-weight:500;
+    position:relative;
+}
+
+/* خط زیر لینک */
+.lux-header nav a::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:0;
+    height:2px;
+    background:#e91e63;
+    transition:.3s;
+}
+
+.lux-header nav a:hover::after{
+    width:100%;
+}
+
+/* دکمه ورود */
+.lux-header button{
+    padding:10px 24px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:700;
+    color:#fff;
+    background:linear-gradient(135deg,#e91e63,#ff5fa2);
+    box-shadow:0 8px 25px rgba(233,30,99,.4);
+    transition:.3s;
+}
+
+.lux-header button:hover{
+    transform:translateY(-2px) scale(1.05);
+    box-shadow:0 12px 35px rgba(233,30,99,.55);
+}
+
+/* ریسپانسیو */
+@media(max-width:768px){
+    .lux-header{
+        flex-direction:column;
+        gap:15px;
+        padding:20px;
+    }
+    .lux-header nav{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+}
+
+header{
+  position:sticky;top:0;z-index:100;
+  display:flex;justify-content:space-between;
+  
+  align-items:center;
+  padding:20px 50px;
+  background:rgba(0, 0, 0, 0.325);
+  backdrop-filter:blur(12px);
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+header h1{color:var(--pink);font-size:28px}
+header button{
+  padding:10px 22px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(135deg,var(--pink),#ff5fa2);
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+}
+.hero{
+  height:520px;
+  margin:30px;
+  border-radius:40px;
+  background:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9') center/cover;
+  position:relative;overflow:hidden;
+}
+.hero::after{
+  content:"";p
+  osition:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.3),rgba(0,0,0,.7));
+}
+.hero-content{
+  position:relative;
+  z-index:2;height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:#fff;text-align:center;
+}
+.hero-content h2{font-size:56px;margin-bottom:15px}
+.hero-content p{font-size:22px;margin-bottom:30px}
+.hero-content button{
+  padding:16px 40px;border:none;border-radius:40px;
+  background:linear-gradient(135deg,var(--gold),#ffeaa7);
+  font-size:18px;font-weight:700;cursor:pointer;
+}
+section{padding:60px 40px}
+.section-title{
+  text-align:center;font-size:34px;color:var(--pink);margin-bottom:40px
+}
+.products{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px
+}
+.card{
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(12px);
+  border-radius:30px;padding:22px;
+  box-shadow:0 20px 50px rgba(0,0,0,.12);
+  transition:.4s
+}
+.card:hover{transform:translateY(-15px)}
+.card img{
+  width:100%;height:190px;object-fit:cover;border-radius:20px;margin-bottom:15px
+}
+.card h3{font-size:20px;margin-bottom:8px}
+.card p{color:#777;margin-bottom:15px}
+.card button{
+  width:100%;padding:14px;border:none;border-radius:25px;
+  background:linear-gradient(135deg,var(--pink),#ff5fa2);
+  color:#fff;font-weight:700;cursor:pointer
+}
+.reviews{background:#fff0f5}
+.review{
+  background:#fff;border-radius:25px;padding:25px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08)
+}
+footer{
+  background:#11111148;color:#000000;text-align:center;padding:30px;font-size:14px
+}
+@media(max-width:768px){
+  .hero-content h2{font-size:34px}
+</style>
+
+<header class="lux-header">
+    <div class="brand">
+        <h1>Luxury Beauty Shop</h1>
+    </div>
+   <nav>
+    <a href="./index.html">درباره</a>
+    <a href="./projects.html">پروژه‌ها</a>
+    <a href="./skills.html">مهارت‌ها</a>
+    <a href="./contact.html">تماس با ما</a>
+    <a href="./dashboard.html">داشبورد</a>
+    <button type="button">ورود / ثبت نام</button>
+</nav>
+
+</header>
+
+
+</header>
+<div class="hero">
+  <div class="hero-content">
+    <h2>زیبایی خاص، انتخاب خاص</h2>
+    <p>بهترین لوازم آرایشی اورجینال و لوکس</p>
+    <button>مشاهده محصولات</button>
+  </div>
+</div>
+<section>
+  <h2 class="section-title">محصولات پرطرفدار</h2>
+  <div class="products">
+    <div class="card"><img src="https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3"><h3>رژ لب مات</h3><p>320,000 تومان</p><button>افزودن به سبد</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348"><h3>کرم پودر</h3><p>540,000 تومان</p><button>افزودن به سبد</button></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1526045478516-99145907023c"><h3>ریمل حجم‌دهنده</h3><p>280,000 تومان</p><button>افزودن به سبد</button></div>
+  </div>
+</section>
+<section class="reviews">
+  <h2 class="section-title">نظرات مشتریان</h2>
+  <div class="products">
+    <div class="review">⭐️⭐️⭐️⭐️⭐️<br>کیفیت عالی و ارسال سریع</div>
+    <div class="review">⭐️⭐️⭐️⭐️⭐️<br>بسته‌بندی بسیار شیک</div>
+    <div class="review">⭐️⭐️⭐️⭐️⭐️<br>حتماً دوباره خرید می‌کنم</div>
+  </div>
+</section>
+<footer>© 2025 Luxury Beauty Shop</footer>
+</body>
+</html>
