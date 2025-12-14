@@ -139,11 +139,14 @@ header button{
 </head>
 <body>
 <header>
-<h1>Luxury Beauty Dashboard</h1>
-<button>خروج</button>
+<h1 id="userGreeting"></h1>
+<div style="display:flex;align-items:center;gap:20px;">
+  <!-- <span id="userGreeting" style="color:#fff;font-size:16px;">خوش آمدید</span> -->
+  <button>خروج</button>
+</div>
 </header>
 <div class="sidebar">
-<a href="#">داشبورد</a>
+<a href="./index.html">صفحه اصلی</a>
 <a href="#">محصولات</a>
 <a href="#">سفارشات</a>
 <a href="#">کاربران</a>
@@ -173,6 +176,12 @@ header button{
 </table>
 </div>
 <script>
+// Display user greeting
+const userName = sessionStorage.getItem('userName');
+if (userName) {
+  document.getElementById('userGreeting').textContent = 'خوش آمدید، ' + userName;
+}
+
 const ctx = document.getElementById('salesChart').getContext('2d');
 const salesChart = new Chart(ctx, {
     type: 'line',

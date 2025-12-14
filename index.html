@@ -78,6 +78,141 @@ body{
 .lux-header nav a:hover::after{
     width:100%;
 }
+:root {
+  --pink:#e91e63;
+  --gold:#FFD700;
+  --purple:#8e2de2;
+  --red:#ff416c;
+  --blue:#1e3c72;
+  --shadow: rgba(0,0,0,0.2);
+}
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: linear-gradient(135deg, #ffffff, #f5c7dd);
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Overlay for popup */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  z-index: 1000;
+}
+
+/* Popup container */
+.auth-popup {
+  position: fixed;
+  bottom: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  background: rgba(0, 0, 0, 0.39);
+  backdrop-filter: blur(12px);
+  border-radius: 25px 25px 10px 10px;
+  box-shadow: 0 20px 50px var(--shadow);
+  padding: 30px 25px;
+  z-index: 1001;
+  transition: bottom 0.6s ease-in-out;
+}
+
+.auth-popup.active {
+  bottom: 50px;
+}
+
+.auth-popup h2 {
+  text-align: center;
+  color: var(--pink);
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.auth-popup form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.auth-popup input {
+  padding: 12px 15px;
+  border-radius: 25px;
+  border: 1px solid rgb(0, 0, 0);
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.auth-popup input:focus {
+  border: 1px solid var(--pink);
+  box-shadow: 0 0 10px rgba(233,30,99,0.3);
+}
+
+/* Button with gradient animation */
+.auth-popup button.submit-btn {
+  padding: 14px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(270deg, var(--purple), var(--red), var(--blue));
+  background-size: 600% 600%;
+  animation: gradientBG 6s ease infinite;
+  transition: transform 0.3s;
+}
+
+.auth-popup button.submit-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Gradient animation */
+@keyframes gradientBG {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+
+/* Close button */
+.auth-popup .close-btn {
+  position: absolute;
+  top: 12px;
+  left: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* Switch link */
+.auth-popup .switch-link {
+  text-align: center;
+  margin-top: 5px;
+  color: var(--pink);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.auth-popup .switch-link:hover {
+  text-decoration: underline;
+}
+
+@media(max-width:480px){
+  .auth-popup {
+    width: 95%;
+    padding: 25px 15px;
+  }
+  .auth-popup h2 { font-size: 20px; }
+}
 
 /* دکمه ورود */
 .lux-header button{
@@ -138,8 +273,7 @@ header button{
   position:relative;overflow:hidden;
 }
 .hero::after{
-  content:"";p
-  osition:absolute;inset:0;
+  content:"";position:absolute;inset:0;
   background:linear-gradient(to bottom,rgba(0,0,0,.3),rgba(0,0,0,.7));
 }
 .hero-content{
@@ -205,10 +339,104 @@ footer{
     <a href="./skills.html">مهارت‌ها</a>
     <a href="./contact.html">تماس با ما</a>
     <a href="./dashboard.html">داشبورد</a>
-    <button type="button">ورود / ثبت نام</button>
+    
+
 </nav>
 
 </header>
+
+<!-- Trigger button -->
+<div style="text-align:center; margin-top:50px;">
+  <button onclick="openAuth()" style="
+    padding:15px 30px;
+    font-size:16px;
+    font-weight:700;
+    border:none;
+    border-radius:30px;
+    color:#fff;
+    cursor:pointer;
+    background: linear-gradient(270deg, #8e2de2, #ff416c, #1e3c72);
+    background-size: 600% 600%;
+    animation: gradientBG 6s ease infinite;
+  ">ورود / ثبت نام</button>
+</div>
+
+</div>
+<!-- Popup overlay -->
+<div class="popup-overlay" onclick="closeAuth()"></div>
+
+<!-- Auth popup -->
+<div class="auth-popup" id="authPopup">
+  <button class="close-btn" onclick="closeAuth()">×</button>
+
+  <!-- Login Form -->
+  <div id="loginForm">
+    <h2>ورود به حساب کاربری</h2>
+    <form action="./dashboard.html" onsubmit="handleLogin(event)">
+      <input type="text" id="loginName" placeholder="نام کاربری" required>
+      <input type="email" placeholder="ایمیل" required>
+      <input type="password" placeholder="رمز عبور" required>
+      <button type="submit" class="submit-btn">ورود</button>
+    </form>
+    <div class="switch-link" onclick="switchToSignup()">ثبت نام نکرده‌اید؟ ثبت نام</div>
+  </div>
+
+  <!-- Signup Form -->
+  <div id="signupForm" style="display:none;">
+    <h2>ثبت نام در لوکس بیوتی</h2>
+    <form action="./dashboard.html" onsubmit="handleSignup(event)">
+      <input type="text" id="signupName" placeholder="نام کامل" required>
+      <input type="email" placeholder="ایمیل" required>
+      <input type="password" placeholder="رمز عبور" required>
+      <input type="password" placeholder="تکرار رمز عبور" required>
+      <button type="submit" class="submit-btn">ثبت نام</button>
+    </form>
+    <div class="switch-link" onclick="switchToLogin()">حساب دارید؟ ورود</div>
+  </div>
+
+</div>
+
+<script>
+function openAuth(){
+  document.getElementById('authPopup').classList.add('active');
+  document.querySelector('.popup-overlay').style.display = 'block';
+  /* redirect to dashboard.html */
+}
+
+function closeAuth(){
+  document.getElementById('authPopup').classList.remove('active');
+  document.querySelector('.popup-overlay').style.display = 'none';
+}
+
+// Switch forms
+function switchToSignup(){
+  document.getElementById('loginForm').style.display = 'none';
+  document.getElementById('signupForm').style.display = 'block';
+}
+
+function switchToLogin(){
+  document.getElementById('signupForm').style.display = 'none';
+  document.getElementById('loginForm').style.display = 'block';
+}
+
+// Handle signup
+function handleSignup(event){
+  event.preventDefault();
+  const name = document.getElementById('signupName').value;
+  sessionStorage.setItem('userName', name);
+  window.location.href = './dashboard.html';
+}
+
+// Handle login
+function handleLogin(event){
+  event.preventDefault();
+  const name = document.getElementById('loginName').value;
+  sessionStorage.setItem('userName', name);
+  window.location.href = './dashboard.html';
+}
+</script>
+
+
 
 
 </header>

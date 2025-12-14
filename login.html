@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/shabnam-font/dist/font-face.css">
+<link rel="stylesheet" href="../fonts/Vazirmatn-font-face.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<style>
+
+/* ===== Popup Container ===== */
+.auth-popup {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  transition: bottom 0.5s ease-in-out;
+  z-index: 9999;
+}
+
+/* Show popup */
+.auth-popup.show {
+  bottom: 0;
+  align-items: center;
+}
+
+/* Content */
+.auth-content {
+  background: #00000068;
+  border-radius: 20px 20px 0 0;
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+  transform: translateY(100%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.auth-popup.show .auth-content {
+  transform: translateY(0);
+}
+
+.auth-content h2 {
+  color: #e91e63;
+  margin-bottom: 15px;
+}
+
+.auth-content input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid #dddddd8d;
+  font-size: 16px;
+}
+
+.auth-content button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #000000, #0000005c);
+  color: #fc088a;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.auth-content button:hover {
+  background: linear-gradient(135deg, #f453c3, #10100f);
+  color: #333;
+}
+
+/* Close button */
+.auth-content .close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #e91e63;
+  font-weight: bold;
+}
+
+.auth-content p {
+  margin: 15px 0;
+  color: #555;
+}
+
+#signupBtn {
+  background: linear-gradient(135deg, #000000, #0b0b0a61);
+  color: #f5047d;
+}
+
+#signupBtn:hover {
+  background: linear-gradient(135deg, #10100f, #ff5f9e);
+  color: #f7046e;
+}
+
+</style>
+
+<!-- Popup Modal -->
+<div id="authPopup" class="auth-popup">
+  <div class="auth-content">
+    <span class="close">&times;</span>
+    <h2>ورود به حساب کاربری</h2>
+    <form id="loginForm">
+      <input type="email" placeholder="ایمیل" required>
+      <input type="password" placeholder="رمز عبور" required>
+      <button type="submit">ورود</button>
+    </form>
+    <p>یا</p>
+    <button id="signupBtn">ثبت نام</button>
+  </div>
+</div>
+
+<script>
+// Open & Close Popup
+const openBtn = document.getElementById('openAuth');
+const popup = document.getElementById('authPopup');
+const closeBtn = document.querySelector('.auth-content .close');
+
+openBtn.addEventListener('click', () => {
+  popup.classList.add('show');
+});
+
+closeBtn.addEventListener('click', () => {
+  popup.classList.remove('show');
+});
+
+// Close by clicking outside content
+popup.addEventListener('click', (e) => {
+  if(e.target === popup) popup.classList.remove('show');
+});
+</script>
